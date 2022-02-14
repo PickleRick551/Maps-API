@@ -11,6 +11,11 @@ class MapY(object):
     def gg(self):
         return str(self.y) + "," + str(self.x)
 
+    def update(self, event):
+        if event.key == 49 and self.zoom < 19:
+            self.zoom += 1
+        elif event.key == 50 and self.zoom > 1:
+            self.zoom -= 1
 
 def load_map(mp):
     map_request = "http://static-maps.yandex.ru/1.x/?ll={ll}&z={z}&l={type}".format(ll=mp.gg(), z=mp.zoom, type=mp.type)
@@ -35,6 +40,8 @@ def main():
         event = pygame.event.wait()
         if event.type == pygame.QUIT:
             break
+        elif event.type == pygame.KEYUP:
+            mp.update(event)
         map_file = load_map(mp)
         screen.blit(pygame.image.load(map_file), (0, 0))
         pygame.display.flip()
