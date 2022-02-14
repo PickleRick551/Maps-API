@@ -12,9 +12,9 @@ class MapY(object):
         return str(self.y) + "," + str(self.x)
 
     def update(self, event):
-        if event.key == 49 and self.zoom < 19:
+        if event.key == 280 and self.zoom < 19:
             self.zoom += 1
-        elif event.key == 50 and self.zoom > 1:
+        elif event.key == 281 and self.zoom > 1:
             self.zoom -= 1
 
 def load_map(mp):
